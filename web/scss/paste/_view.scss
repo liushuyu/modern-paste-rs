@@ -1,0 +1,74 @@
+@import '../universal/colors';
+@import '../universal/mixins';
+
+
+.paste-load-splash {
+    opacity: .6;
+    visibility: visible;
+    z-index: 6;
+}
+
+.paste-header {
+    background-color: $blue-alt;
+    padding: 20px 50px;
+    width: 100%;
+    z-index: 5;
+
+    .paste-subtitle {
+        margin-top: 5px;
+    }
+
+    .paste-attachments {
+        margin: 5px 0 25px;
+    }
+
+    .attachment-icon {
+        margin-right: 5px;
+    }
+}
+
+#paste-view-contents {
+    height: 0;
+    width: 0;
+}
+
+.password-protected {
+    display: none;  // Should be initially hidden
+    left: 50%;
+    padding: 50px;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 300px;
+    z-index: 6;
+
+    .lock-icon {
+        height: 110px;
+        margin-bottom: 30px;
+        width: 100px;
+    }
+
+    .paste-password-field {
+        height: 15px;
+        margin: 10px 0 20px;
+    }
+}
+
+.deactivation-token-banner {
+    // Height and background-color properties are !important to override #footer defaults
+    @include ease-out-transition(margin);
+    background-color: $error-red !important;
+    bottom: 0;
+    height: 60px !important;
+    left: 0;
+    opacity: .9;
+    padding: 20px 50px;
+    position: fixed;
+    width: 100%;
+    z-index: 7;
+
+    .paste-deactivation-link {
+        margin-top: 10px;
+    }
+}

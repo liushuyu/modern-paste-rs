@@ -42,7 +42,7 @@
             <a href="/paste/new">NEW PASTE</a>
         </p>
         <p class="menu-panel-item dark-link-alt sans-serif regular white size-3 spaced">
-            <a href="/paste/archive">ARCHIVE</a>
+            <a href="/archive">ARCHIVE</a>
         </p>
         <p class="open-source-note dark-link sans-serif light light-gray size-2">
             <span class="sans-serif regular">modernpaste-rs</span> is a modern, feature-rich, Rust-powered open source alternative to pastebin
@@ -58,7 +58,7 @@
                     <span class="title-section icon-link">
                         <img class="menu-button" src="/static/img/icons/menu.png" />
                         <img class="hidden" src="/static/img/icons/cross.png" />
-                        <a href="/paste">
+                        <a href="/">
                             <span class="sans-serif light gray size-5 spaced">modern</span><span class="sans-serif regular gray size-5 spaced">paste</span>
                         </a>
                     </span>
@@ -78,12 +78,9 @@
     </div>
 
     <div id="uris" class="hidden">
-        {# {% set uri_modules_to_classes = all_uris() %}
-        {% for uri_module in uri_modules_to_classes %}
-            {% for uri_class in uri_modules_to_classes[uri_module] %}
-                {{ macros.include_uri(uri_module, uri_class) }}
-            {% endfor %}
-        {% endfor %} #}
+        <div id="RecentPastesURI" class="hidden">/api/paste/recent</div>
+        <div id="TopPastesURI" class="hidden">/api/paste/top</div>
+        <div id="PasteArchiveInterfaceURI" class="hidden">/archive</div>
     </div>
 
     {% if config.BUILD_ENVIRONMENT == 'dev' %}

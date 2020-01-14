@@ -1,0 +1,164 @@
+@import '../universal/colors';
+@import '../universal/fonts';
+@import '../universal/mixins';
+
+
+.paste-submit-splash {
+    z-index: 4;
+
+    .uploading-status {
+        @include absolute-center(1);
+        margin-top: 60px;
+        position: absolute;
+    }
+}
+
+.section-label {
+    border-bottom: 1px solid $lighter-gray;
+}
+
+.minimal-input-field {
+    background-color: transparent;
+    border: none;
+    height: 20px;
+    margin-top: 10px;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+    width: 100%;
+}
+
+.underlined-input-field {
+    border-bottom: 2px solid $lighter-gray;
+    padding: 0 0 5px;
+}
+
+.paste-title-container {
+    height: 50px;
+    padding: 20px 30px 10px;
+    width: 100%;
+}
+
+.paste-language-container {
+    height: 50px;
+    padding: 15px 30px;
+    width: 100%;
+
+    .language-selector {
+        margin-top: 10px;
+        width: 150px;
+    }
+}
+
+.more-options-container {
+    @include ease-out-transition(height);
+    height: 25px;
+    overflow: hidden;
+    padding: 10px 30px;
+
+    .option-description {
+        margin-top: 20px;
+    }
+
+    .more-options-link {
+        cursor: pointer;
+    }
+
+    .arrow {
+        @include ease-out-transition(transform);
+        @include rotate(90deg);
+        height: 8px;
+        margin-left: 5px;
+        width: 8px;
+    }
+}
+
+.paste-attachments-container {
+    padding: 15px 30px;
+
+    .attachments-upload-section {
+        margin-top: 10px;
+    }
+
+    .max-size-notice {
+        margin-left: 5px;
+    }
+
+    .attachments-list {
+        margin-top: 15px;
+    }
+
+    .attachment-item {
+        margin-bottom: 5px;
+    }
+
+    .delete-attachment-icon {
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    .faded {
+        opacity: .5;
+    }
+}
+
+.paste-contents-container {
+    height: 20px;
+    padding: 15px 30px;
+}
+
+#paste-post-contents {
+    width: 100%;
+}
+
+#footer {
+    @include ease-out-transition(margin);
+    background-color: $dark-blue;
+    bottom: 0;
+    display: table;
+    height: 80px;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 7;
+
+    .statistics-section {
+        display: table-cell;
+        vertical-align: middle;
+
+        .line-count {
+            margin-left: 40px;
+        }
+
+        .character-count {
+            margin-left: 15px;
+        }
+    }
+
+    .submit-section {
+        display: table-cell;
+        text-align: right;
+        vertical-align: middle;
+
+        .submit-arrow {
+            margin-left: 10px;
+        }
+
+        .submit-button {
+            margin: 0 40px;
+            padding: 10px 30px;
+            width: 80px;
+        }
+    }
+}
+
+// scss-lint:disable SelectorFormat
+.CodeMirror {
+    font-family: 'ubuntu-mono-regular', monospace !important;
+    height: auto !important;
+    margin-bottom: 90px !important;
+}
+
+.CodeMirror-scroll {
+    min-height: 500px !important;
+}

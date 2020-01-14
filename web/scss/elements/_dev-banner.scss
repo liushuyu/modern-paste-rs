@@ -1,0 +1,17 @@
+@import '../universal/colors';
+
+
+#dev-banner {
+    background-color: $error-red;
+    bottom: 0;
+    height: 10px;
+    left: 50%;
+    opacity: .6;
+    padding: 10px 0;
+    pointer-events: none;
+    position: fixed;
+    text-align: center;
+    transform: translateX(-50%);
+    width: 70px;
+    z-index: 15;
+}

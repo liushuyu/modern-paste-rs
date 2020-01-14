@@ -1,0 +1,43 @@
+@import '../universal/colors';
+
+
+.dark-link a:link,
+.dark-link a:visited,
+.dark-link a:active {
+    color: $light-blue;
+    text-decoration: none;
+}
+
+.dark-link a:hover {
+    border-bottom: 2px solid $light-blue;
+}
+
+.dark-link-alt a:link,
+.dark-link-alt a:visited,
+.dark-link-alt a:active {
+    color: $white;
+    text-decoration: none;
+}
+
+.dark-link-alt a:hover {
+    border-bottom: 2px solid $white;
+}
+
+.light-link a:link,
+.light-link a:visited,
+.light-link a:active {
+    color: $blue;
+    text-decoration: none;
+}
+
+.light-link a:hover {
+    border-bottom: 2px solid $blue;
+}
+
+.icon-link a:link,
+.icon-link a:visited,
+.icon-link a:active,
+.icon-link a:hover {
+    color: transparent;
+    text-decoration: none;
+}

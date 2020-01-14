@@ -1,0 +1,53 @@
+@import '../universal/colors';
+@import '../universal/mixins';
+
+
+.archive-container {
+    margin: 70px 0 150px 100px;
+    min-width: 500px;
+    width: 800px;
+
+    .separator {
+        height: 5px;
+    }
+
+    .paste-posted,
+    .paste-views {
+        text-align: right;
+    }
+
+    .page-navigation {
+        margin-top: 50px;
+    }
+
+    .previous-button,
+    .next-button {
+        @include no-user-select;
+        cursor: pointer;
+        margin-right: 30px;
+    }
+
+    .previous-button {
+        display: none;  // This should be hidden initially, since we start on the first pages
+    }
+
+    .right-arrow {
+        height: 20px;
+        margin-left: 5px;
+        vertical-align: text-top;
+        width: 20px;
+    }
+
+    .left-arrow {
+        @include rotate(180deg);
+        height: 20px;
+        margin-right: 5px;
+        vertical-align: text-top;
+        width: 20px;
+    }
+
+    td,
+    th {
+        padding: 8px 0;
+    }
+}

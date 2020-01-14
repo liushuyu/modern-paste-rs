@@ -1,0 +1,21 @@
+@import '../universal/colors';
+@import '../universal/mixins';
+
+
+#loading-splash {
+    opacity: 100;
+    visibility: visible;
+}
+
+.splash {
+    @include ease-out-transition(opacity);
+    background-color: $pure-white;
+    bottom: 0;
+    height: 100%;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 10;
+}

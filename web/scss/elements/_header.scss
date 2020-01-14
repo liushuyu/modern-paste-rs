@@ -1,0 +1,86 @@
+@import '../universal/colors';
+@import '../universal/mixins';
+
+
+#header {
+    @include ease-out-transition(margin);
+    background-color: $white;
+    display: table;
+    height: 70px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 7;
+
+    .container {
+        display: table-row;
+    }
+
+    .menu-button {
+        cursor: pointer;
+        height: 20px;
+        margin-bottom: 2px;
+        padding-right: 25px;
+        vertical-align: text-bottom;
+        width: 20px;
+    }
+
+    .title-section {
+        display: table-cell;
+        padding-left: 50px;
+        vertical-align: middle;
+    }
+
+    .user-section {
+        display: table-cell;
+        padding-right: 30px;
+        text-align: right;
+        vertical-align: middle;
+    }
+
+    .user-header {
+        cursor: pointer;
+        padding: 20px;
+
+        .user-menu-arrow {
+            @include ease-out-transition(transform);
+            @include rotate(90deg);
+            height: 10px;
+            margin-left: 10px;
+            width: 10px;
+        }
+    }
+}
+
+#user-header-dropdown {
+    background-color: $white;
+    display: none;  // Dropdown should default to not being shown
+    padding: 10px 20px;
+    position: fixed;
+    right: 40px;
+    text-align: right;
+    top: 70px;
+    width: 120px;
+    z-index: 7;
+
+    .dropdown-item {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.main-header-container {
+    background-color: $blue-alt;
+    height: 100px;
+    padding: 50px 0;
+    width: 100%;
+
+    .main-header {
+        margin-left: 100px;
+
+        .main-title {
+            margin-bottom: 20px;
+        }
+    }
+}

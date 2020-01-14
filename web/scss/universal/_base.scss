@@ -1,0 +1,60 @@
+@import '../universal/colors';
+@import '../universal/mixins';
+
+
+* {
+    box-sizing: initial;
+    margin: 0;
+    padding: 0;  // Undoing random useless Bootstrap CSS properties
+}
+
+html,
+body {
+    height: 100%;
+    line-height: initial;
+}
+
+p, label {
+    margin: 0;  // Why does Bootstrap add a margin-bottom property to p elements?
+}
+
+.hidden {
+    display: none;
+}
+
+#menu-panel {
+    @include ease-out-transition(margin);
+    background-color: $darker-blue;
+    height: 100%;
+    left: 0;
+    margin-left: -310px;
+    padding: 50px 30px;
+    position: fixed;
+    top: 0;
+    width: 250px;
+    z-index: 7;
+
+    .title {
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .menu-panel-item {
+        padding: 10px 0;
+    }
+
+    .open-source-note {
+        bottom: 150px;
+        position: absolute;
+        width: 200px;
+    }
+}
+
+#main-page {
+    @include ease-out-transition(margin);
+}
+
+.content {
+    overflow: hidden;
+    padding-top: 70px;
+}
