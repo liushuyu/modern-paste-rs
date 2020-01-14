@@ -1,0 +1,21 @@
+[package]
+name = "modern-paste-rs"
+version = "0.1.0"
+authors = ["liushuyu <liushuyu011@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.release]
+lto = true
+
+[dependencies]
+actix-web = "2.0"
+env_logger = "0.7"
+failure = "0.1"
+tera = "1.0"
+chrono = "0.4"
+tokio-postgres = { version = "0.5", features = ["with-chrono-0_4"] }
+actix-rt = "1.0"
+serde_derive = "1.0"
+serde = "1.0"

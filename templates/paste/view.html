@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ paste.title }} - Modern Paste
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/codemirror@5.50.2/lib/codemirror.css">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/codemirror@5.50.2/lib/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/codemirror@5.50.2/addon/mode/simple.js"></script>
+    <script type="text/javascript" src="/static/js/paste/ViewController.js"></script>
+
+    {% for language in config.LANGUAGES %}
+        {% if language != 'text' %}
+            <script type="text/javascript" defer src="https://cdn.jsdelivr.net/npm/codemirror@5.50.2/mode/{{language}}/{{language}}.js"></script>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div class="paste-load-splash splash">
+        <div class="spinner"><div></div></div>
+    </div>
+
+    <div class="paste-header">
+        <p class="paste-title ubuntu-mono regular white size-5">Paste Title</p>
+        <p class="paste-subtitle sans-serif regular size-1 white less-spaced">
+            <span class="paste-language sans-serif semibold">LANGUAGE</span>
+            | BY <span class="paste-poster-username">USERNAME</span>
+            | POSTED <span class="paste-post-time"> DATE</span>
+            <!--The expiry time should be hidden if it has no expiry time-->
+            <span class="paste-expiry-time-container">
+                | EXPIRES <span class="paste-expiry-time">DATE</span>
+            </span>
+            | <span class="paste-views">0</span> VIEWS
+        </p>
+        <br/>
+        <div class="paste-attachments">
+            <p class="paste-attachments-text sans-serif semibold size-1 white less-spaced">ATTACHMENTS</p>
+            <template id="attachment-link-template">
+                <div class="attachment-item dark-link-alt">
+                    <i class="attachment-icon fa fa-paperclip size-1 white" aria-hidden="true"></i>
+                    <a href="#" class="attachment-link ubuntu-mono regular size-1 white">hello, world</a>
+                </div>
+            </template>
+        </div>
+        <p class="paste-subtitle sans-serif semibold size-1 white less-spaced dark-link-alt">
+            <a class="paste-download-link" href="#">DOWNLOAD</a>
+            {# {{ uri('paste', 'PasteViewRawInterfaceURI', paste_id=id_repr(paste.paste_id)) }} #}
+            &bull; <a class="paste-raw-link" href="#">VIEW RAW</a>
+            <!--The fork option should be hidden if the paste is password-protected-->
+            <span class="paste-fork-container">
+                {# {{ uri('paste', 'PastePostInterfaceURI', fork=id_repr(paste.paste_id)) }} #}
+                &bull; <a class="paste-fork-link" href="#">FORK</a>
+            </span>
+            <!--The paste deactivation link should be hidden if the user does not own the paste-->
+            <span class="paste-deactivate-container">
+                &bull; <a class="paste-deactivate-link" href="#">DEACTIVATE</a>
+            </span>
+        </p>
+    </div>
+
+    <div class="paste-view-container">
+        <textarea id="paste-view-contents" class="raw-paste-contents"></textarea>
+        <a class="paste-download-content hidden" href="#" download></a>
+    </div>
+
+    {% if show_deactivation_token %}
+        <div id="footer" class="deactivation-token-banner dark-link-alt">
+            <p class="sans-serif semibold white size-2 less-spaced">PASTE DEACTIVATION TOKEN</p>
+            <p class="sans-serif regular white size-1 less-spaced">The link to deactivate this paste is below. Make sure to keep it somewhere safe; this is the only time you'll see it!</p>
+            {# {{ full_uri('paste', 'PasteDeactivateInterfaceURI', paste_id=id_repr(paste.paste_id), deactivation_token=paste.deactivation_token) }} #}
+            <p class="paste-deactivation-link sans-serif regular white size-1 less-spaced"><a href="">NOT IMPLEMETED</a></p>
+        </div>
+    {% endif %}
+
+    <div class="password-protected">
+        <img class="lock-icon" src="/static/img/icons/lock.png" />
+        <p class="sans-serif regular gray size-5 less-spaced">This paste is password-protected.</p>
+        <br/>
+        <p class="sans-serif regular light-gray size-3 less-spaced">Enter the paste password to continue.</p>
+        <br/>
+        <form>
+            <fieldset class="form-group">
+                <input type="password" class="paste-password-field form-control sans-serif regular gray size-2 less-spaced" placeholder="Paste password" autocomplete="off" autofocus>
+            </fieldset>
+            <button type="submit" class="password-submit-button btn btn-primary sans-serif semibold white size-2 less-spaced">CONTINUE</button>
+        </form>
+    </div>
+
+    <!--Modal for paste deactivation confirmation-->
+    <div class="deactivate-confirm-modal modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content light-link">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p class="modal-title sans-serif semibold gray size-3 less-spaced">DEACTIVATE PASTE</p>
+                </div>
+                <div class="modal-body">
+                    <p class="deactivate-confirm-text sans-serif regular gray size-2">You are about to deactivate this paste. Are you sure you want to continue?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-button btn btn-default sans-serif semibold gray size-1 less-spaced" data-dismiss="modal">CANCEL</button>
+                    <button type="button" class="deactivate-button btn btn-danger sans-serif semibold white size-1 less-spaced" autocomplete="off">DEACTIVATE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="metadata" class="hidden">
+        <div id="paste-id" data-paste-id="{{ id_repr(paste_id=paste.paste_id) }}"></div>
+        <div id="paste-deactivation-token" data-paste-deactivation-token="{% if deactivation_token is not none %}{{ deactivation_token }}{% endif %}"></div>
+        {# <div id="show-deactivate-link">{{ current_user.is_authenticated and current_user.user_id == paste.user_id }}</div> #}
+    </div>
+{% endblock %}
